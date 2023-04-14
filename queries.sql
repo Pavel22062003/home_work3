@@ -4,7 +4,7 @@ FROM orders
 INNER JOIN customers USING(customer_id)
 INNER JOIN employees USING(employee_id)
 INNER JOIN shippers ON orders.ship_via=shippers.shipper_id
-WHERE customers.city = 'London' and employees.city = 'London'
+WHERE customers.city = 'London' and employees.city = 'London' AND shippers.company_name = 'United Package'
 
 --2
 SELECT products.product_name,products.units_in_stock, suppliers.contact_name,suppliers.phone
@@ -16,7 +16,7 @@ AND categories.category_name IN ('Dairy Products','Condiments')
 ORDER BY products.units_in_stock DESC
 
 --3
-SELECT order_id, customers.company_name
+SELECT customers.company_name
 FROM orders
 RIGHT JOIN customers USING(customer_id)
 WHERE order_id IS NULL
